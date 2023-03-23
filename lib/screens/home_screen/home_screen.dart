@@ -47,23 +47,50 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Row(
-              children: [
-                CircleAvatar(
+        child: Container(
+          color: Color(0xffd1ad17),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  child: Row(
+                children: [
+                  CircleAvatar(
                     backgroundColor: Colors.white54,
                     radius: 43,
                     child: CircleAvatar(
                       radius: 40,
                       backgroundColor: Colors.yellow,
                     ),
-
-
-                ),
-              ],
-            )),
-          ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Welcome Huest'),
+                      SizedBox(
+                        height: 7,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        height: 30,
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: Text('Login'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
+              listTile(iconData:Icons.home_outlined,title:"Home"),
+              listTile(iconData:Icons.home_outlined,title:"Home"),
+              listTile(iconData:Icons.home_outlined,title:"Home"),
+            ],
+          ),
         ),
       ),
       body: Padding(
@@ -91,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Padding(
                             padding:
-                            const EdgeInsets.only(right: 130, bottom: 10),
+                                const EdgeInsets.only(right: 130, bottom: 10),
                             child: Container(
                               height: 50,
                               width: 100,
@@ -172,7 +199,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
@@ -191,7 +217,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -204,7 +229,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
           ],
         ),
       ),
@@ -248,7 +272,6 @@ Widget SingleProducts() {
                     color: Colors.grey,
                   ),
                 ),
-
                 Row(
                   children: [
                     Expanded(
@@ -258,12 +281,10 @@ Widget SingleProducts() {
                         // padding: EdgeInsets.only(left: 5),
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
-                            borderRadius:
-                            BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(10)),
                         child: Expanded(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: const [
                               Text('50 Gram',
                                   style: TextStyle(
@@ -283,38 +304,55 @@ Widget SingleProducts() {
                         width: 50,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
-                            borderRadius:
-                            BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(10)),
                         child: Expanded(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: const [
-                              Icon(Icons.remove, size: 20,
-                                color: Color(0xffd0b84c),),
-
-                              Text('1', style: TextStyle(
-                                  color: Color(0xffd0b84c),
-                                  fontWeight: FontWeight.bold
-                              ),),
-
-                              Icon(Icons.add, size: 20,
-                                color: Color(0xffd0b84c),),
-
+                              Icon(
+                                Icons.remove,
+                                size: 20,
+                                color: Color(0xffd0b84c),
+                              ),
+                              Text(
+                                '1',
+                                style: TextStyle(
+                                    color: Color(0xffd0b84c),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Icon(
+                                Icons.add,
+                                size: 20,
+                                color: Color(0xffd0b84c),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
-
-
               ],
             ),
           ),
         ],
+      ),
+    ),
+  );
+}
+
+Widget listTile(
+  {required IconData iconData, required String title}
+) {
+  return ListTile(
+    leading: Icon(
+      iconData,
+      size: 32,
+    ),
+    title: Text(
+      title,
+      style: TextStyle(
+        color: Colors.black45,
       ),
     ),
   );
