@@ -46,10 +46,29 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Row(
+              children: [
+                CircleAvatar(
+                    backgroundColor: Colors.white54,
+                    radius: 43,
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.yellow,
+                    ),
+
+
+                ),
+              ],
+            )),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               height: 190,
@@ -193,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget SingleProducts(){
+Widget SingleProducts() {
   return Container(
     height: 230,
     width: 150,
