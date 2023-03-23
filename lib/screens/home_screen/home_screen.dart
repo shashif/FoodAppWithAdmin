@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/drawer_list_tile_widget.dart';
+import '../../widgets/single_products.dart';
+import 'drawer_widget.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -46,26 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Row(
-              children: [
-                CircleAvatar(
-                    backgroundColor: Colors.white54,
-                    radius: 43,
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.yellow,
-                    ),
-
-
-                ),
-              ],
-            )),
-          ],
-        ),
-      ),
+      drawer: drawer_widget(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: ListView(
@@ -91,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Padding(
                             padding:
-                            const EdgeInsets.only(right: 130, bottom: 10),
+                                const EdgeInsets.only(right: 130, bottom: 10),
                             child: Container(
                               height: 50,
                               width: 100,
@@ -164,15 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
@@ -191,20 +175,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
-                  SingleProducts(),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
                 ],
               ),
             ),
-
           ],
         ),
       ),
@@ -212,110 +194,126 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget SingleProducts() {
-  return Container(
-    height: 230,
-    width: 150,
-    margin: EdgeInsets.symmetric(horizontal: 5),
-    decoration: BoxDecoration(
-      color: const Color(0xffd9dad9),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Image.network(
-                'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png'),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Fresh Basil',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const Text(
-                  '50\$ / 50 Gram',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 30,
-                        width: 50,
-                        // padding: EdgeInsets.only(left: 5),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius:
-                            BorderRadius.circular(10)),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceEvenly,
-                            children: const [
-                              Text('50 Gram',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 30,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius:
-                            BorderRadius.circular(10)),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceEvenly,
-                            children: const [
-                              Icon(Icons.remove, size: 20,
-                                color: Color(0xffd0b84c),),
-
-                              Text('1', style: TextStyle(
-                                  color: Color(0xffd0b84c),
-                                  fontWeight: FontWeight.bold
-                              ),),
-
-                              Icon(Icons.add, size: 20,
-                                color: Color(0xffd0b84c),),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
 
 
-              ],
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+// Widget SingleProducts() {
+//   return Container(
+//     height: 230,
+//     width: 150,
+//     margin: EdgeInsets.symmetric(horizontal: 5),
+//     decoration: BoxDecoration(
+//       color: const Color(0xffd9dad9),
+//       borderRadius: BorderRadius.circular(10),
+//     ),
+//     child: Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Column(
+//         children: [
+//           Expanded(
+//             flex: 2,
+//             child: Image.network(
+//                 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png'),
+//           ),
+//           Expanded(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 const Text(
+//                   'Fresh Basil',
+//                   style: TextStyle(
+//                     fontWeight: FontWeight.bold,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//                 const Text(
+//                   '50\$ / 50 Gram',
+//                   style: TextStyle(
+//                     fontWeight: FontWeight.bold,
+//                     color: Colors.grey,
+//                   ),
+//                 ),
+//                 Row(
+//                   children: [
+//                     Expanded(
+//                       child: Container(
+//                         height: 30,
+//                         width: 50,
+//                         // padding: EdgeInsets.only(left: 5),
+//                         decoration: BoxDecoration(
+//                             border: Border.all(color: Colors.grey),
+//                             borderRadius: BorderRadius.circular(10)),
+//                         child: Expanded(
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                             children: const [
+//                               Text('50 Gram',
+//                                   style: TextStyle(
+//                                     fontSize: 11,
+//                                   )),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(
+//                       width: 5,
+//                     ),
+//                     Expanded(
+//                       child: Container(
+//                         height: 30,
+//                         width: 50,
+//                         decoration: BoxDecoration(
+//                             border: Border.all(color: Colors.grey),
+//                             borderRadius: BorderRadius.circular(10)),
+//                         child: Expanded(
+//                           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                             children: const [
+//                               Icon(
+//                                 Icons.remove,
+//                                 size: 20,
+//                                 color: Color(0xffd0b84c),
+//                               ),
+//                               Text(
+//                                 '1',
+//                                 style: TextStyle(
+//                                     color: Color(0xffd0b84c),
+//                                     fontWeight: FontWeight.bold),
+//                               ),
+//                               Icon(
+//                                 Icons.add,
+//                                 size: 20,
+//                                 color: Color(0xffd0b84c),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+
+// Widget listTile(
+//   {required IconData iconData, required String title}
+// ) {
+//   return ListTile(
+//     leading: Icon(
+//       iconData,
+//       size: 32,
+//     ),
+//     title: Text(
+//       title,
+//       style: TextStyle(
+//         color: Colors.black45,
+//       ),
+//     ),
+//   );
+// }
