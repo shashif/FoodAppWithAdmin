@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class SingleProducts extends StatelessWidget {
@@ -10,7 +12,7 @@ class SingleProducts extends StatelessWidget {
 
   final String productImage;
   final String productname;
-  final Function onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,11 @@ class SingleProducts extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Image.network(
-                  productImage),
+              child: GestureDetector(
+                onTap:onTap ,
+                child: Image.network(
+                    productImage),
+              ),
             ),
             Expanded(
               child: Column(
