@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/product_overview/product_overview.dart';
 
 import '../../widgets/drawer_list_tile_widget.dart';
 import '../../widgets/single_products.dart';
@@ -149,11 +150,27 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
+                  }),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
+                  }),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
+                  }),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
+                  }),
+                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
+                  }),
+
                 ],
               ),
             ),
