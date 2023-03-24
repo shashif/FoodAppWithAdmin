@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class SingleProducts extends StatelessWidget {
   const SingleProducts(
       {Key? key,
-      required this.productname,
+      required this.productName,
       required this.productImage,
       required this.onTap})
       : super(key: key);
 
   final String productImage;
-  final String productname;
+  final String productName;
   final void Function()? onTap;
 
   @override
@@ -41,7 +41,7 @@ class SingleProducts extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                    Text(
-                     productname,
+                     productName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,

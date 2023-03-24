@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/home_screen/home_screen.dart';
+import 'package:food_app/screens/my_profile/my_profile.dart';
 
 import '../../widgets/drawer_list_tile_widget.dart';
-class drawer_widget extends StatelessWidget {
-  const drawer_widget({
+
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({
     super.key,
   });
 
@@ -10,84 +13,114 @@ class drawer_widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Color(0xffd1ad17),
+        color: const Color(0xffd1ad17),
         child: ListView(
           children: [
             DrawerHeader(
                 child: Row(
+              children: [
+                const CircleAvatar(
+                  backgroundColor: Colors.white54,
+                  radius: 43,
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.yellow,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white54,
-                      radius: 43,
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundColor: Colors.yellow,
+                    const Text('Welcome Huest'),
+                    const SizedBox(
+                      height: 7,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      height: 30,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: const Text('Login'),
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Welcome Huest'),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          height: 30,
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: Text('Login'),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
-                )),
-            listTile(iconData: Icons.home_outlined, title: "Home"),
-            listTile(iconData: Icons.shop_outlined, title: "Review Cart"),
-            listTile(iconData: Icons.person_outlined, title: "My Profile"),
+                ),
+              ],
+            )),
+            listTile(
+                iconData: Icons.home_outlined, title: "Home", onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+            }),
+            listTile(
+                iconData: Icons.shop_outlined,
+                title: "Review Cart",
+                onTap: () {}),
+            listTile(
+                iconData: Icons.person_outlined,
+                title: "My Profile",
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyProfile()));
+                }),
             listTile(
                 iconData: Icons.notifications_outlined,
-                title: "Notification"),
+                title: "Notification",
+                onTap: () {}),
             listTile(
-                iconData: Icons.star_outlined, title: "Rating and Review"),
-            listTile(iconData: Icons.favorite_outlined, title: "Wishlist"),
+                iconData: Icons.star_outlined,
+                title: "Rating and Review",
+                onTap: () {}),
             listTile(
-                iconData: Icons.copy_outlined, title: "Raise & Complaint"),
-            listTile(iconData: Icons.format_quote_outlined, title: "FAQs"),
+                iconData: Icons.favorite_outlined,
+                title: "Wishlist",
+                onTap: () {}),
+            listTile(
+                iconData: Icons.copy_outlined,
+                title: "Raise & Complaint",
+                onTap: () {}),
+            listTile(
+                iconData: Icons.format_quote_outlined,
+                title: "FAQs",
+                onTap: () {}),
             Container(
               height: 350,
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Contact Support'),
-                  SizedBox(
+                  const Text('Contact Support'),
+                  const SizedBox(
                     height: 10,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Text('Call us:'),
-                        SizedBox(width: 10,),
-                        Text('+8801611500060'),
+                        const Text('Call us:'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text('+8801611500060'),
                       ],
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Text('Mail us:'),
-                        SizedBox(width: 10,),
-                        Text('shoriful.hasan@gmail.com'),
+                        const Text('Mail us:'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text('shoriful.hasan@gmail.com'),
                       ],
                     ),
                   ),
