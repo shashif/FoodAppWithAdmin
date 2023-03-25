@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/screens/product_overview/product_overview.dart';
 
-import '../../widgets/drawer_list_tile_widget.dart';
+
 import '../../widgets/single_products.dart';
 import 'drawer_widget.dart';
 
@@ -150,32 +150,68 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                    )));
-                  }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                    )));
-                  }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                    )));
-                  }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                    )));
-                  }),
 
 
+                  SingleProducts(
+                      productName: 'Apple',
+                      productImage:
+                      'https://www.pngmart.com/files/5/Red-Apple-PNG-File.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Apple',
+                              productImage:
+                              'https://www.pngmart.com/files/5/Red-Apple-PNG-File.png',
+                            )));
+                      }),
+                  SingleProducts(
+                      productName: 'Strawberry',
+                      productImage:
+                      'https://static.vecteezy.com/system/resources/previews/008/848/372/original/fresh-red-strawberry-fruit-free-png.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Strawberry',
+                              productImage:
+                              'https://static.vecteezy.com/system/resources/previews/008/848/372/original/fresh-red-strawberry-fruit-free-png.png',
+                            )));
+                      }),
+                  SingleProducts(
+                      productName: 'Lemon',
+                      productImage:
+                      'https://static.vecteezy.com/system/resources/thumbnails/008/848/358/small/fresh-lemon-fruit-free-png.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Lemon',
+                              productImage:
+                              'https://static.vecteezy.com/system/resources/thumbnails/008/848/358/small/fresh-lemon-fruit-free-png.png',
+                            )));
+                      }),
+                  SingleProducts(
+                      productName: 'Pomegranate ',
+                      productImage:
+                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Pomegranate',
+                              productImage:
+                              'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                            )));
+                      }),
+                  SingleProducts(
+                      productName: 'Pomegranate ',
+                      productImage:
+                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Pomegranate',
+                              productImage:
+                              'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                            )));
+                      }),
                 ],
               ),
             ),
@@ -201,29 +237,53 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                        )));
+                  SingleProducts(
+                      productName: 'Basil ',
+                      productImage:
+                      'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Basil',
+                              productImage:
+                              'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.pngg',
+                            )));
                       }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                        )));
+                  SingleProducts(
+                      productName: 'Tomato ',
+                      productImage:
+                      'https://static.vecteezy.com/system/resources/previews/008/550/755/original/tomato-vegetable-transparent-png.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Tomato',
+                              productImage:
+                              'https://static.vecteezy.com/system/resources/previews/008/550/755/original/tomato-vegetable-transparent-png.png',
+                            )));
                       }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                        )));
+                  SingleProducts(
+                      productName: 'Eggplant ',
+                      productImage:
+                      'https://freepngimg.com/download/eggplant/5-2-eggplant-free-download-png.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Eggplant',
+                              productImage:
+                              'https://freepngimg.com/download/eggplant/5-2-eggplant-free-download-png.png',
+                            )));
                       }),
-                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
-                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
-                        )));
+                  SingleProducts(
+                      productName: 'Pomegranate ',
+                      productImage:
+                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ProductOverview(
+                              productName: 'Pomegranate',
+                              productImage:
+                              'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
+                            )));
                       }),
                 ],
               ),
@@ -234,8 +294,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
 
 // Widget SingleProducts() {
 //   return Container(
