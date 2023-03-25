@@ -22,7 +22,7 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
+      backgroundColor: primaryColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 0.0,
@@ -40,7 +40,7 @@ class MyProfile extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 80,
+                height: 100,
                 color: primaryColor,
               ),
               Container(
@@ -51,7 +51,11 @@ class MyProfile extends StatelessWidget {
                   color: scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
+                      topRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+
                 ),
                 child: ListView(
                   children: [

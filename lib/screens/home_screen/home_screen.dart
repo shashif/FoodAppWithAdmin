@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: drawer_widget(),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: ListView(
@@ -134,59 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   Text(
-                    'Herbs Seasonings',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'View all',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
-                  }),
-<<<<<<<<< Temporary merge branch 1
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-=========
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
-                  }),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
-                  }),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
-                  }),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview()));
-                  }),
-
->>>>>>>>> Temporary merge branch 2
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
                     'Fresh Fruits',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -203,11 +150,81 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
-                  SingleProducts(productname: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',onTap: (){}),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                    )));
+                  }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                    )));
+                  }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                    )));
+                  }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                      productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                    )));
+                  }),
+
+
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Herbs Seasonings',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'View all',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                        )));
+                      }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                        )));
+                      }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                        )));
+                      }),
+                  SingleProducts(productName: 'Basil',productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductOverview(
+                          productImage: 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',productName: 'Basil',
+                        )));
+                      }),
                 ],
               ),
             ),
