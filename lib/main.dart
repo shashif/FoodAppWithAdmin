@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:food_app/screens/home_screen/home_screen.dart';
 import 'package:food_app/widgets/color_widget.dart';
 
+import 'auth/sing_in.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
       ),
-      home: HomeScreen(),
+      // home: HomeScreen(),
+      home: SingIn(),
     );
   }
 }
