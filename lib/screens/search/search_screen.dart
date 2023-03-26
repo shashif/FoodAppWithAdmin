@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/screens/search/search_item.dart';
+import 'package:food_app/widgets/single_item.dart';
 import 'package:food_app/widgets/color_widget.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -52,11 +52,11 @@ class SearchScreen extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
+          SingleItem(isBool: false),
+          SingleItem(isBool: false),
+          SingleItem(isBool: false),
+          SingleItem(isBool: false),
+          SingleItem(isBool: false),
         ],
       ),
     );

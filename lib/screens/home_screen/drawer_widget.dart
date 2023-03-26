@@ -3,6 +3,7 @@ import 'package:food_app/screens/home_screen/home_screen.dart';
 import 'package:food_app/screens/my_profile/my_profile.dart';
 
 import '../../widgets/drawer_list_tile_widget.dart';
+import '../review_cart/review_cart.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -59,7 +60,9 @@ class DrawerWidget extends StatelessWidget {
             listTile(
                 iconData: Icons.shop_outlined,
                 title: "Review Cart",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReviewCart()));
+                }),
             listTile(
                 iconData: Icons.person_outlined,
                 title: "My Profile",
