@@ -5,12 +5,22 @@ import 'package:food_app/models/product_model.dart';
 class ProductProvider with ChangeNotifier {
   late ProductModel productModel;
 
+  List<ProductModel>searchLlist=[];
   productsModel(QueryDocumentSnapshot element) {
     productModel = ProductModel(
         productImage: element.get("productImage"),
         productName: element.get("productName"),
         productPrice: element.get("productPrice"));
+
+    searchLlist.add(productModel);
   }
+
+///////////////////////////////////Search Start/////////////////////////////////////
+  List<ProductModel> get getaAllProductSearch {
+    return searchLlist;
+  }
+
+  ///////////////////////////////////Search End/////////////////////////////////////
 
   ///////////////////////////////////fetchProductsData1 Start/////////////////////////////////////
   List<ProductModel> product1List = [];

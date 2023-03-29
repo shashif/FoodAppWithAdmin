@@ -15,8 +15,19 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
+  String query="";
+
+  searchItem(String query) {
+    List<ProductModel> searchContent = widget.search.where((element) {
+      return element.productName.toLowerCase().contains(query);
+    }).toList();
+    return searchContent;
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> _searchItem= searchItem(query);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -46,6 +57,11 @@ class _SearchScreenState extends State<SearchScreen> {
               horizontal: 20,
             ),
             child: TextField(
+              onChanged:(value){
+                setState(() {
+                  query= value;
+                });
+              } ,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -65,7 +81,7 @@ class _SearchScreenState extends State<SearchScreen> {
             height: 10,
           ),
           Column(
-            children: widget.search.map((data) {
+            children: _searchItem.map((data) {
               return SingleItem(
                 isBool: false,
                 productName: data.productName,

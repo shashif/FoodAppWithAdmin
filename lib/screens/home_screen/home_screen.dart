@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SearchScreen(search: [],),
+                    builder: (context) => SearchScreen(search:productProvider.getaAllProductSearch,),
                   ),
                 );
               },
