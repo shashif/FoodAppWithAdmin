@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               icon: Icon(
-                Icons.search,
+                 Icons.search,
                 size: 17,
               ),
               color: Colors.black,

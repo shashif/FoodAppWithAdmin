@@ -3,6 +3,8 @@ import 'dart:ffi';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
+import 'count_widget.dart';
+
 class SingleProducts extends StatelessWidget {
   const SingleProducts({
     Key? key,
@@ -21,7 +23,7 @@ class SingleProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 210,
-      width: 140,
+      width: 160,
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         color: const Color(0xffd9dad9),
@@ -35,7 +37,7 @@ class SingleProducts extends StatelessWidget {
               flex: 2,
               child: GestureDetector(
                 onTap: onTap,
-                child: FancyShimmerImage(imageUrl: productImage),
+                child: FancyShimmerImage(imageUrl: productImage,boxFit: BoxFit.fitHeight),
                 // child: Image.network(
                 //     productImage),
               ),
@@ -84,36 +86,7 @@ class SingleProducts extends StatelessWidget {
                         width: 5,
                       ),
                       Expanded(
-                        child: Container(
-                          height: 30,
-                          width: 50,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Icon(
-                                  Icons.remove,
-                                  size: 20,
-                                  color: Color(0xffd0b84c),
-                                ),
-                                Text(
-                                  '1',
-                                  style: TextStyle(
-                                      color: Color(0xffd0b84c),
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Icon(
-                                  Icons.add,
-                                  size: 20,
-                                  color: Color(0xffd0b84c),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        child: CountWidget(),
                       ),
                     ],
                   ),
