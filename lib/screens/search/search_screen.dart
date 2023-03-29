@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:food_app/widgets/single_item.dart';
 import 'package:food_app/widgets/color_widget.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+import '../../models/product_model.dart';
 
+class SearchScreen extends StatefulWidget {
+  SearchScreen({Key? key, required this.search}) : super(key: key);
+
+  // SearchScreen({super.key, required this.search});
+  final List<ProductModel> search;
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +42,9 @@ class SearchScreen extends StatelessWidget {
           ),
           Container(
             height: 52,
-            margin: EdgeInsets.symmetric(horizontal: 20,),
+            margin: EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -52,11 +64,21 @@ class SearchScreen extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          SingleItem(isBool: false),
-          SingleItem(isBool: false),
-          SingleItem(isBool: false),
-          SingleItem(isBool: false),
-          SingleItem(isBool: false),
+          Column(
+            children: widget.search.map((data) {
+              return SingleItem(
+                isBool: false,
+                productName: data.productName,
+                productImage: data.productImage,
+                productPrice: data.productPrice,
+              );
+            }).toList(),
+          ),
+
+          // SingleItem(isBool: false),
+          // SingleItem(isBool: false),
+          // SingleItem(isBool: false),
+          // SingleItem(isBool: false),
         ],
       ),
     );

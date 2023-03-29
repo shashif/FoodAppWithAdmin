@@ -1,24 +1,27 @@
 import 'dart:ffi';
 
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class SingleProducts extends StatelessWidget {
-  const SingleProducts(
-      {Key? key,
-      required this.productName,
-      required this.productImage,
-      required this.onTap})
-      : super(key: key);
+  const SingleProducts({
+    Key? key,
+    required this.productName,
+    required this.productImage,
+    required this.onTap,
+    required this.productPrice,
+  }) : super(key: key);
 
   final String productImage;
   final String productName;
+  final String productPrice;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230,
-      width: 150,
+      height: 210,
+      width: 140,
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         color: const Color(0xffd9dad9),
@@ -31,24 +34,24 @@ class SingleProducts extends StatelessWidget {
             Expanded(
               flex: 2,
               child: GestureDetector(
-                onTap:onTap ,
-                child: Image.network(
-                    productImage),
+                onTap: onTap,
+                child: FancyShimmerImage(imageUrl: productImage),
+                // child: Image.network(
+                //     productImage),
               ),
             ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                     productName,
+                  Text(
+                    productName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
-                  const Text(
-                    '50\$ / 50 Gram',
+                   Text("${productPrice} \$ / 50 Gram",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,

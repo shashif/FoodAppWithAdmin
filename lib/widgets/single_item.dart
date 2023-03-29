@@ -1,10 +1,20 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/widgets/color_widget.dart';
 
 class SingleItem extends StatelessWidget {
-  SingleItem({Key? key, this.isBool = false}) : super(key: key);
+  SingleItem(
+      {Key? key,
+      required this.isBool,
+      required this.productName,
+      required this.productImage,
+      required this.productPrice})
+      : super(key: key);
 
   bool isBool;
+  String productName;
+  String productImage;
+  int productPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +30,8 @@ class SingleItem extends StatelessWidget {
                     child: Container(
                   height: 100,
                   child: Center(
-                    child: Image.network(
-                        "https://www.pngmart.com/files/5/Red-Apple-PNG-File.png"),
+                    child: FancyShimmerImage(imageUrl: productImage,boxFit: BoxFit.scaleDown),
+                    // child: Image.network(productImage),
                   ),
                 )),
                 Expanded(
@@ -35,8 +45,7 @@ class SingleItem extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Text(
-                            'Product name',
+                          Text(productName,
                             style: TextStyle(
                               color: textColor,
                               fontWeight: FontWeight.bold,
@@ -64,8 +73,7 @@ class SingleItem extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: Text(
-                                      'Product price',
+                                    child: Text('$productPrice \$',
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 14,
@@ -156,20 +164,18 @@ class SingleItem extends StatelessWidget {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                 )),
-
               ],
             ),
           ),
           isBool == false
               ? Container()
               : Divider(
-            height: 1,
-            color: Colors.black45,
-          ),
+                  height: 1,
+                  color: Colors.black45,
+                ),
         ],
       ),
     );

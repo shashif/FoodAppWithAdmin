@@ -1,12 +1,14 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/widgets/color_widget.dart';
 
 enum SigninCharacter { fill, outline }
 
 class ProductOverview extends StatefulWidget {
-  const ProductOverview({Key? key, required this.productName, required this.productImage,}) : super(key: key);
+  const ProductOverview({Key? key, required this.productName, required this.productImage, required this.productPrice,}) : super(key: key);
   final String productName;
   final String productImage;
+  final int productPrice;
 
   @override
   State<ProductOverview> createState() => _ProductOverviewState();
@@ -91,12 +93,13 @@ class _ProductOverviewState extends State<ProductOverview> {
                   children: [
                     ListTile(
                       title: Text(widget.productName??""),
-                      subtitle: Text('price'),
+                      subtitle: Text('\$ ${widget.productPrice}'),
                     ),
                     Container(
                       height: 250,
                       padding: EdgeInsets.all(40),
-                      child: Image.network(widget.productImage??""),
+                      child: FancyShimmerImage(imageUrl: widget.productImage,boxFit: BoxFit.fitHeight),
+                      // child: Image.network(widget.productImage??""),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -135,7 +138,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                               ),
                             ],
                           ),
-                          Text('\$ 50'),
+                          Text('\$ ${widget.productPrice}'),
                           Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 10),

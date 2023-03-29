@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/providers/product_provider.dart';
 import 'package:food_app/screens/home_screen/home_screen.dart';
 import 'package:food_app/widgets/color_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'auth/sing_in.dart';
 
@@ -17,14 +19,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: primaryColor,
-        scaffoldBackgroundColor: scaffoldBackgroundColor,
+    return ChangeNotifierProvider<ProductProvider>(
+      create: (context)=>ProductProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: scaffoldBackgroundColor,
+        ),
+        home: HomeScreen(),
+        // home: SingIn(),
       ),
-      home: HomeScreen(),
-      // home: SingIn(),
     );
   }
 }

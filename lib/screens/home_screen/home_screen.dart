@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/providers/product_provider.dart';
 import 'package:food_app/screens/product_overview/product_overview.dart';
 import 'package:food_app/screens/search/search_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/single_products.dart';
 import 'drawer_widget.dart';
@@ -13,8 +15,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late ProductProvider productProvider;
+
+  @override
+  void initState() {
+    ProductProvider productProvider = Provider.of(context, listen: false);
+    productProvider.fetchProductsData1();
+    productProvider.fetchProductsData2();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    productProvider = Provider.of(context);
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
       appBar: AppBar(
@@ -27,14 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 17,
           ),
         ),
-        actions:  [
+        actions: [
           CircleAvatar(
             backgroundColor: Color(0xffd4d181),
             radius: 15,
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SearchScreen(),),);
+                  MaterialPageRoute(
+                    builder: (context) => SearchScreen(search: [],),
+                  ),
+                );
               },
               icon: Icon(
                 Icons.search,
@@ -68,9 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.redAccent,
                 image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://www.tastingtable.com/img/gallery/the-common-vegetable-that-contains-more-protein-than-steak/intro-1647190998.webp')),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://www.tastingtable.com/img/gallery/the-common-vegetable-that-contains-more-protein-than-steak/intro-1647190998.webp'),
+                ),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const EdgeInsets.only(right: 130, bottom: 10),
                             child: Container(
                               height: 50,
-                              width: 100,
+                              width: 120,
                               decoration: const BoxDecoration(
                                 color: Color(0xffd1ad17),
                                 borderRadius: BorderRadius.only(
@@ -95,18 +112,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               child: const Center(
-                                child: Text(
-                                  'Vegi',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    shadows: [
-                                      BoxShadow(
-                                        color: Colors.green,
-                                        blurRadius: 10,
-                                        offset: Offset(3, 3),
-                                      ),
-                                    ],
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 24),
+                                  child: Text(
+                                    'Vegetable Shop',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      shadows: [
+                                        BoxShadow(
+                                          color: Colors.green,
+                                          blurRadius: 10,
+                                          offset: Offset(3, 3),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -138,16 +158,22 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Fresh Fruits',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'View all',
-                    style: TextStyle(color: Colors.grey),
+                  GestureDetector(
+                    onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
+                      search: productProvider.getfetchProductsData1List),),);
+                    },
+                    child: Text(
+                      'View all',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                 ],
               ),
@@ -155,84 +181,45 @@ class _HomeScreenState extends State<HomeScreen> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [
-                  SingleProducts(
-                      productName: 'Apple',
-                      productImage:
-                          'https://www.pngmart.com/files/5/Red-Apple-PNG-File.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Apple',
-                                  productImage:
-                                      'https://www.pngmart.com/files/5/Red-Apple-PNG-File.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Strawberry',
-                      productImage:
-                          'https://static.vecteezy.com/system/resources/previews/008/848/372/original/fresh-red-strawberry-fruit-free-png.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Strawberry',
-                                  productImage:
-                                      'https://static.vecteezy.com/system/resources/previews/008/848/372/original/fresh-red-strawberry-fruit-free-png.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Lemon',
-                      productImage:
-                          'https://static.vecteezy.com/system/resources/thumbnails/008/848/358/small/fresh-lemon-fruit-free-png.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Lemon',
-                                  productImage:
-                                      'https://static.vecteezy.com/system/resources/thumbnails/008/848/358/small/fresh-lemon-fruit-free-png.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Pomegranate ',
-                      productImage:
-                          'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Pomegranate',
-                                  productImage:
-                                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Pomegranate ',
-                      productImage:
-                          'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Pomegranate',
-                                  productImage:
-                                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                                )));
-                      }),
-                ],
+                children: productProvider.getfetchProductsData1List.map(
+                  (value) {
+                    return SingleProducts(
+                        productName: value.productName,
+                        productImage: value.productImage,
+                        productPrice: value.productPrice.toString(),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProductOverview(
+                                  productName: value.productName,
+                                  productPrice: value.productPrice,
+                                  productImage: value.productImage)));
+                        });
+                  },
+                ).toList(),
               ),
             ),
+
+
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Herbs Seasonings',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'View all',
-                    style: TextStyle(color: Colors.grey),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
+                          search: productProvider.getfetchProductsData2List),),);
+                    },
+                    child: Text(
+                      'View all',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                 ],
               ),
@@ -240,183 +227,79 @@ class _HomeScreenState extends State<HomeScreen> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
+                children: productProvider.getfetchProductsData2List.map(
+                      (value) {
+                    return SingleProducts(
+                        productName: value.productName,
+                        productImage: value.productImage,
+                        productPrice: value.productPrice.toString(),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProductOverview(
+                                  productName: value.productName,
+                                  productPrice: value.productPrice,
+                                  productImage: value.productImage)));
+                        });
+                  },
+                ).toList(),
+              ),
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SingleProducts(
-                      productName: 'Basil ',
-                      productImage:
-                          'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Basil',
-                                  productImage:
-                                      'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.pngg',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Tomato ',
-                      productImage:
-                          'https://static.vecteezy.com/system/resources/previews/008/550/755/original/tomato-vegetable-transparent-png.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Tomato',
-                                  productImage:
-                                      'https://static.vecteezy.com/system/resources/previews/008/550/755/original/tomato-vegetable-transparent-png.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Eggplant ',
-                      productImage:
-                          'https://freepngimg.com/download/eggplant/5-2-eggplant-free-download-png.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Eggplant',
-                                  productImage:
-                                      'https://freepngimg.com/download/eggplant/5-2-eggplant-free-download-png.png',
-                                )));
-                      }),
-                  SingleProducts(
-                      productName: 'Pomegranate ',
-                      productImage:
-                          'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProductOverview(
-                                  productName: 'Pomegranate',
-                                  productImage:
-                                      'https://www.freepnglogos.com/uploads/pomegranate-png/centra-pomegranate-loose-centra-27.png',
-                                )));
-                      }),
+                  Text(
+                    'Green vegetables',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
+                          search: productProvider.getfetchProductsData2List),),);
+                    },
+                    child: Text(
+                      'View all',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
                 ],
               ),
             ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: productProvider.getfetchProductsData2List.map(
+                      (value) {
+                    return SingleProducts(
+                        productName: value.productName,
+                        productImage: value.productImage,
+                        productPrice: value.productPrice.toString(),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProductOverview(
+                                  productName: value.productName,
+                                  productPrice: value.productPrice,
+                                  productImage: value.productImage)));
+                        });
+                  },
+                ).toList(),
+              ),
+            ),
+
+
+
+
+
+
+
           ],
         ),
       ),
     );
   }
 }
-
-// Widget SingleProducts() {
-//   return Container(
-//     height: 230,
-//     width: 150,
-//     margin: EdgeInsets.symmetric(horizontal: 5),
-//     decoration: BoxDecoration(
-//       color: const Color(0xffd9dad9),
-//       borderRadius: BorderRadius.circular(10),
-//     ),
-//     child: Padding(
-//       padding: const EdgeInsets.all(8.0),
-//       child: Column(
-//         children: [
-//           Expanded(
-//             flex: 2,
-//             child: Image.network(
-//                 'https://www.theproducemoms.com/wp-content/uploads/2022/01/basil.png'),
-//           ),
-//           Expanded(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 const Text(
-//                   'Fresh Basil',
-//                   style: TextStyle(
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//                 const Text(
-//                   '50\$ / 50 Gram',
-//                   style: TextStyle(
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.grey,
-//                   ),
-//                 ),
-//                 Row(
-//                   children: [
-//                     Expanded(
-//                       child: Container(
-//                         height: 30,
-//                         width: 50,
-//                         // padding: EdgeInsets.only(left: 5),
-//                         decoration: BoxDecoration(
-//                             border: Border.all(color: Colors.grey),
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Expanded(
-//                           child: Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                             children: const [
-//                               Text('50 Gram',
-//                                   style: TextStyle(
-//                                     fontSize: 11,
-//                                   )),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       width: 5,
-//                     ),
-//                     Expanded(
-//                       child: Container(
-//                         height: 30,
-//                         width: 50,
-//                         decoration: BoxDecoration(
-//                             border: Border.all(color: Colors.grey),
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Expanded(
-//                           child: Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                             children: const [
-//                               Icon(
-//                                 Icons.remove,
-//                                 size: 20,
-//                                 color: Color(0xffd0b84c),
-//                               ),
-//                               Text(
-//                                 '1',
-//                                 style: TextStyle(
-//                                     color: Color(0xffd0b84c),
-//                                     fontWeight: FontWeight.bold),
-//                               ),
-//                               Icon(
-//                                 Icons.add,
-//                                 size: 20,
-//                                 color: Color(0xffd0b84c),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
-// Widget listTile(
-//   {required IconData iconData, required String title}
-// ) {
-//   return ListTile(
-//     leading: Icon(
-//       iconData,
-//       size: 32,
-//     ),
-//     title: Text(
-//       title,
-//       style: TextStyle(
-//         color: Colors.black45,
-//       ),
-//     ),
-//   );
-// }
