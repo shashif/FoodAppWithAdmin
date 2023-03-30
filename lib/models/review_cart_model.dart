@@ -3,12 +3,12 @@ class ReviewCardModel {
   String cartImage;
   String cartName;
   int cartPrice;
-  int cartQuantitty;
+  int cartQuantity;
 
   ReviewCardModel(
       {required this.cartID,
       required this.cartImage,
       required this.cartName,
       required this.cartPrice,
-      required this.cartQuantitty});
+      required this.cartQuantity});
 }

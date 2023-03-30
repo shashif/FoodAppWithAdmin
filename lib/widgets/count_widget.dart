@@ -93,7 +93,7 @@ class _CountWidgetState extends State<CountWidget> {
                         cartImage: widget.productImage,
                         cartName: widget.productName,
                         cartPrice: widget.productPrice,
-                        cartQuantitty: count);
+                        cartQuantity: count);
                   },
                   child: Text(
                     'Add',

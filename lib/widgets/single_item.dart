@@ -1,23 +1,48 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/widgets/color_widget.dart';
+import 'package:provider/provider.dart';
 
-class SingleItem extends StatelessWidget {
-  SingleItem(
-      {Key? key,
-      required this.isBool,
-      required this.productName,
-      required this.productImage,
-      required this.productPrice})
-      : super(key: key);
+import '../providers/review_cart_provider.dart';
+
+class SingleItem extends StatefulWidget {
+  SingleItem({
+    Key? key,
+    required this.isBool,
+    required this.productName,
+    required this.productImage,
+    required this.productPrice,
+    required this.productId,
+    this.productQuantity,
+  }) : super(key: key);
 
   bool isBool;
   String productName;
   String productImage;
+  String productId;
   int productPrice;
+  int? productQuantity;
+
+  @override
+  State<SingleItem> createState() => _SingleItemState();
+}
+
+class _SingleItemState extends State<SingleItem> {
+  late ReviewCartProvider reviewCartProvider;
+
+  late int count;
+
+  getCount() {
+    setState(() {
+      count = widget.productQuantity!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    getCount();
+    reviewCartProvider = Provider.of<ReviewCartProvider>(context);
+    reviewCartProvider.getReviewCartData();
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -30,7 +55,9 @@ class SingleItem extends StatelessWidget {
                     child: Container(
                   height: 100,
                   child: Center(
-                    child: FancyShimmerImage(imageUrl: productImage,boxFit: BoxFit.scaleDown),
+                    child: FancyShimmerImage(
+                        imageUrl: widget.productImage,
+                        boxFit: BoxFit.scaleDown),
                     // child: Image.network(productImage),
                   ),
                 )),
@@ -38,14 +65,15 @@ class SingleItem extends StatelessWidget {
                     child: Container(
                   height: 100,
                   child: Column(
-                    mainAxisAlignment: isBool == false
+                    mainAxisAlignment: widget.isBool == false
                         ? MainAxisAlignment.spaceAround
                         : MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
                         children: [
-                          Text(productName,
+                          Text(
+                            widget.productName,
                             style: TextStyle(
                               color: textColor,
                               fontWeight: FontWeight.bold,
@@ -59,7 +87,7 @@ class SingleItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                      isBool == false
+                      widget.isBool == false
                           ? Container(
                               margin: EdgeInsets.only(
                                 right: 10,
@@ -73,7 +101,8 @@ class SingleItem extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: Text('$productPrice \$',
+                                    child: Text(
+                                      '${widget.productPrice} \$',
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 14,
@@ -92,16 +121,14 @@ class SingleItem extends StatelessWidget {
                           : Text('1kg'),
                     ],
                   ),
-                )
-
-                ),
+                )),
                 Expanded(
                     child: Container(
                   height: 100,
-                  padding: isBool == false
+                  padding: widget.isBool == false
                       ? EdgeInsets.symmetric(horizontal: 15, vertical: 32)
                       : EdgeInsets.only(left: 15, right: 15),
-                  child: isBool == false
+                  child: widget.isBool == false
                       ? Container(
                           height: 25,
                           width: 50,
@@ -172,7 +199,7 @@ class SingleItem extends StatelessWidget {
               ],
             ),
           ),
-          isBool == false
+          widget.isBool == false
               ? Container()
               : Divider(
                   height: 1,

@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
     primaryColor: primaryColor,
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     ),
-    home: HomeScreen(),
-    // home: SingIn(),
+    // home: HomeScreen(),
+    home: SingIn(),
     )
     ,
     );
