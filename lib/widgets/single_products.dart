@@ -12,11 +12,13 @@ class SingleProducts extends StatelessWidget {
     required this.productImage,
     required this.onTap,
     required this.productPrice,
+    required this.productId,
   }) : super(key: key);
 
   final String productImage;
   final String productName;
-  final String productPrice;
+  final String productId;
+  final int productPrice;
   final void Function()? onTap;
 
   @override
@@ -37,7 +39,8 @@ class SingleProducts extends StatelessWidget {
               flex: 2,
               child: GestureDetector(
                 onTap: onTap,
-                child: FancyShimmerImage(imageUrl: productImage,boxFit: BoxFit.fitHeight),
+                child: FancyShimmerImage(
+                    imageUrl: productImage, boxFit: BoxFit.fitHeight),
                 // child: Image.network(
                 //     productImage),
               ),
@@ -53,7 +56,8 @@ class SingleProducts extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                   Text("${productPrice} \$ / 50 Gram",
+                  Text(
+                    "${productPrice} \$ / 50 Gram",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
@@ -86,7 +90,12 @@ class SingleProducts extends StatelessWidget {
                         width: 5,
                       ),
                       Expanded(
-                        child: CountWidget(),
+                        child: CountWidget(
+                          productId: productId,
+                          productName: productName,
+                          productImage: productImage,
+                          productPrice: productPrice,
+                        ),
                       ),
                     ],
                   ),

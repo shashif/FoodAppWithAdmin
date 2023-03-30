@@ -48,12 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SearchScreen(search:productProvider.getaAllProductSearch,),
+                    builder: (context) => SearchScreen(
+                      search: productProvider.getaAllProductSearch,
+                    ),
                   ),
                 );
               },
               icon: Icon(
-                 Icons.search,
+                Icons.search,
                 size: 17,
               ),
               color: Colors.black,
@@ -167,8 +169,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
-                      search: productProvider.getfetchProductsData1List),),);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                              search:
+                                  productProvider.getfetchProductsData1List),
+                        ),
+                      );
                     },
                     child: Text(
                       'View all',
@@ -186,20 +193,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     return SingleProducts(
                         productName: value.productName,
                         productImage: value.productImage,
-                        productPrice: value.productPrice.toString(),
+                        productPrice: value.productPrice,
+                        productId: value.productId,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
-                                  productName: value.productName,
-                                  productPrice: value.productPrice,
-                                  productImage: value.productImage)));
+                                    productName: value.productName,
+                                    productPrice: value.productPrice,
+                                    productImage: value.productImage,
+                                    productId: value.productId,
+                                  )));
                         });
                   },
                 ).toList(),
               ),
             ),
-
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
@@ -213,8 +221,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
-                          search: productProvider.getfetchProductsData2List),),);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                              search:
+                                  productProvider.getfetchProductsData2List),
+                        ),
+                      );
                     },
                     child: Text(
                       'View all',
@@ -228,24 +241,24 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: productProvider.getfetchProductsData2List.map(
-                      (value) {
+                  (value) {
                     return SingleProducts(
                         productName: value.productName,
                         productImage: value.productImage,
-                        productPrice: value.productPrice.toString(),
+                        productPrice: value.productPrice,
+                        productId: value.productId,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
                                   productName: value.productName,
                                   productPrice: value.productPrice,
-                                  productImage: value.productImage)));
+                                  productImage: value.productImage,
+                                  productId: value.productId)));
                         });
                   },
                 ).toList(),
               ),
             ),
-
-
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
@@ -259,8 +272,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchScreen(
-                          search: productProvider.getfetchProductsData2List),),);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                              search:
+                                  productProvider.getfetchProductsData2List),
+                        ),
+                      );
                     },
                     child: Text(
                       'View all',
@@ -274,29 +292,25 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: productProvider.getfetchProductsData2List.map(
-                      (value) {
+                  (value) {
                     return SingleProducts(
                         productName: value.productName,
                         productImage: value.productImage,
-                        productPrice: value.productPrice.toString(),
+                        productPrice: value.productPrice,
+                        productId: value.productId,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
-                                  productName: value.productName,
-                                  productPrice: value.productPrice,
-                                  productImage: value.productImage)));
+                                    productName: value.productName,
+                                    productPrice: value.productPrice,
+                                    productImage: value.productImage,
+                                    productId: value.productId,
+                                  )));
                         });
                   },
                 ).toList(),
               ),
             ),
-
-
-
-
-
-
-
           ],
         ),
       ),

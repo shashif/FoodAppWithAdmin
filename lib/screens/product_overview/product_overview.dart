@@ -5,7 +5,7 @@ import 'package:food_app/widgets/color_widget.dart';
 enum SigninCharacter { fill, outline }
 
 class ProductOverview extends StatefulWidget {
-  const ProductOverview({Key? key, required this.productName, required this.productImage, required this.productPrice,}) : super(key: key);
+  const ProductOverview({Key? key, required this.productName, required this.productImage, required this.productPrice, required String productId,}) : super(key: key);
   final String productName;
   final String productImage;
   final int productPrice;

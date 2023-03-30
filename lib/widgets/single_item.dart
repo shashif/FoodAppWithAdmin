@@ -92,7 +92,9 @@ class SingleItem extends StatelessWidget {
                           : Text('1kg'),
                     ],
                   ),
-                )),
+                )
+
+                ),
                 Expanded(
                     child: Container(
                   height: 100,

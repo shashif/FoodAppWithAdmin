@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/providers/review_cart_provider.dart';
 import 'package:food_app/widgets/color_widget.dart';
+import 'package:provider/provider.dart';
 
 class CountWidget extends StatefulWidget {
-  const CountWidget({Key? key}) : super(key: key);
+  CountWidget(
+      {Key? key,
+      required this.productName,
+      required this.productImage,
+      required this.productId,
+      required this.productPrice})
+      : super(key: key);
+
+  String productName;
+  String productImage;
+  String productId;
+
+  int productPrice;
 
   @override
   State<CountWidget> createState() => _CountWidgetState();
@@ -14,6 +28,8 @@ class _CountWidgetState extends State<CountWidget> {
 
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider =
+        Provider.of<ReviewCartProvider>(context);
     return Container(
       height: 30,
       width: 50,
@@ -27,19 +43,17 @@ class _CountWidgetState extends State<CountWidget> {
                 children: [
                   InkWell(
                     onTap: () {
-
-                      if(count == 1){
+                      if (count == 1) {
                         setState(() {
                           isTrue = false;
                         });
                       }
 
-                      if(count > 1){
+                      if (count > 1) {
                         setState(() {
                           count--;
                         });
                       }
-
                     },
                     child: Icon(
                       Icons.remove,
@@ -72,6 +86,14 @@ class _CountWidgetState extends State<CountWidget> {
                     setState(() {
                       isTrue = true;
                     });
+
+
+                    reviewCartProvider.addReviewCartData(
+                        cartID: widget.productId,
+                        cartImage: widget.productImage,
+                        cartName: widget.productName,
+                        cartPrice: widget.productPrice,
+                        cartQuantitty: count);
                   },
                   child: Text(
                     'Add',
