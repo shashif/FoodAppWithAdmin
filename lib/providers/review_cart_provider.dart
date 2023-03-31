@@ -28,10 +28,11 @@ class ReviewCartProvider with ChangeNotifier {
     );
   }
 
-  List<ReviewCardModel> reviewCartDataList = [];
+  /////////////////////////////get cart data start//////////////////////
+  List<ReviewCartModel> reviewCartDataList = [];
 
   void getReviewCartData() async {
-    List<ReviewCardModel> newListData = [];
+    List<ReviewCartModel> newListData = [];
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("ReviewCart")
         .doc(FirebaseAuth.instance.currentUser?.uid)
@@ -40,7 +41,7 @@ class ReviewCartProvider with ChangeNotifier {
         .get();
 
     querySnapshot.docs.forEach((element) {
-      ReviewCardModel reviewCardModel = ReviewCardModel(
+      ReviewCartModel reviewCardModel = ReviewCartModel(
           cartID: element.get('cartID'),
           cartImage: element.get('cartImage'),
           cartName: element.get('cartName'),
@@ -54,8 +55,23 @@ class ReviewCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  List<ReviewCardModel> get getReviewCArtDataList {
+  List<ReviewCartModel> get getReviewCArtDataList {
     return reviewCartDataList;
   }
 
+/////////////////////////////get cart data end//////////////////////
+
+///////////////////////////// cart data Delete  Start//////////////////////
+
+  reviewCartDataDelete(cartID) {
+    FirebaseFirestore.instance
+        .collection('ReviewCart')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection("YourReviewCart")
+        .doc(cartID)
+        .delete();
+    notifyListeners();
+  }
+
+///////////////////////////// cart data Delete  End///////////////////////
 }
