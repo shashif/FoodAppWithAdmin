@@ -5,12 +5,14 @@ import 'package:flutter/cupertino.dart';
 import '../models/review_cart_model.dart';
 
 class ReviewCartProvider with ChangeNotifier {
+
   void addReviewCartData({
     required String cartID,
     required String cartImage,
     required String cartName,
     required int cartPrice,
     required int cartQuantity,
+
   }) async {
     await FirebaseFirestore.instance
         .collection("ReviewCart")
@@ -24,6 +26,7 @@ class ReviewCartProvider with ChangeNotifier {
         "cartName": cartName,
         "cartPrice": cartPrice,
         "cartQuantity": cartQuantity,
+        "isAdd": true,
       },
     );
   }
@@ -42,11 +45,13 @@ class ReviewCartProvider with ChangeNotifier {
 
     querySnapshot.docs.forEach((element) {
       ReviewCartModel reviewCardModel = ReviewCartModel(
-          cartID: element.get('cartID'),
-          cartImage: element.get('cartImage'),
-          cartName: element.get('cartName'),
-          cartPrice: element.get('cartPrice'),
-          cartQuantity: element.get('cartQuantity'));
+        cartID: element.get('cartID'),
+        cartImage: element.get('cartImage'),
+        cartName: element.get('cartName'),
+        cartPrice: element.get('cartPrice'),
+        cartQuantity: element.get('cartQuantity'),
+        isAdd: element.get('isAdd'),
+      );
 
       newListData.add(reviewCardModel);
     });
@@ -74,4 +79,38 @@ class ReviewCartProvider with ChangeNotifier {
   }
 
 ///////////////////////////// cart data Delete  End///////////////////////
+
+
+///////////////////////////// cart data Update  Start///////////////////////
+  void updateReviewCartData({
+    required String cartID,
+    required String cartImage,
+    required String cartName,
+    required int cartPrice,
+    required int cartQuantity,
+
+  }) async {
+    await FirebaseFirestore.instance
+        .collection("ReviewCart")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('YourReviewCart')
+        .doc(cartID)
+        .update(
+      {
+        "cartID": cartID,
+        "cartImage": cartImage,
+        "cartName": cartName,
+        "cartPrice": cartPrice,
+        "cartQuantity": cartQuantity,
+        "isAdd": true,
+      },
+    );
+  }
+///////////////////////////// cart data Update  End/////////////////////////
+
+
+
+
+
+
 }
