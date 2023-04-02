@@ -25,6 +25,7 @@ class WishListProvider with ChangeNotifier{
         "wishListPrice": wishListPrice,
         "wishListQuantity": wishListQuantity,
         "wishList": true,
+
       },
     );
   }
