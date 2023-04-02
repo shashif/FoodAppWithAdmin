@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/providers/product_provider.dart';
 import 'package:food_app/providers/review_cart_provider.dart';
 import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/providers/wishlist_provider.dart';
 import 'package:food_app/screens/home_screen/home_screen.dart';
 import 'package:food_app/widgets/color_widget.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider<ProductProvider>(create: (context)=>ProductProvider(),),
     ChangeNotifierProvider<UserProvider>(create: (context)=>UserProvider(),),
     ChangeNotifierProvider<ReviewCartProvider>(create: (context)=>ReviewCartProvider(),),
+    ChangeNotifierProvider<WishListProvider>(create: (context)=>WishListProvider(),),
     ],
 
     child: MaterialApp(

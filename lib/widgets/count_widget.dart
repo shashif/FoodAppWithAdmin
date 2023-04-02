@@ -73,7 +73,7 @@ class _CountWidgetState extends State<CountWidget> {
                       .reviewCartDataDelete(widget.productId);
                 }
 
-                if (count > 1) {
+                else if (count > 1) {
                   setState(() {
                     count--;
                   });
