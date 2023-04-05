@@ -4,6 +4,7 @@ import 'package:food_app/widgets/color_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/review_cart_provider.dart';
+import 'count_widget.dart';
 
 class SingleItem extends StatefulWidget {
   SingleItem({
@@ -13,11 +14,12 @@ class SingleItem extends StatefulWidget {
     required this.productImage,
     required this.productPrice,
     required this.productId,
-    this.productQuantity,
-    this.onDelete,
+     this.productQuantity,
+    this.onDelete,  required this.wishList,
   }) : super(key: key);
 
-  bool isBool;
+  bool isBool=false;
+  bool wishList=false;
   String productName;
   String productImage;
   String productId;
@@ -36,7 +38,7 @@ class _SingleItemState extends State<SingleItem> {
 
   getCount() {
     setState(() {
-      count = widget.productQuantity!;
+      count = widget.productQuantity?? 0;
     });
   }
 
@@ -90,36 +92,66 @@ class _SingleItemState extends State<SingleItem> {
                         ],
                       ),
                       widget.isBool == false
-                          ? Container(
-                              margin: EdgeInsets.only(
-                                right: 10,
-                              ),
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              height: 35,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      '${widget.productPrice} \$',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 14,
+                          ? GestureDetector(
+                        onTap: (){
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: new Text('50 Gram'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: new Text('500 Gram'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    ListTile(
+                                      title: new Text('1 Kg'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                            child: Container(
+                                margin: EdgeInsets.only(
+                                  right: 10,
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text('${widget.productPrice} \$ or 50 gram',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Center(
-                                      child: Icon(
-                                    Icons.arrow_drop_down,
-                                    size: 20,
-                                    color: primaryColor,
-                                  )),
-                                ],
+                                    Center(
+                                        child: Icon(
+                                      Icons.arrow_drop_down,
+                                      size: 20,
+                                      color: primaryColor,
+                                    )),
+                                  ],
+                                ),
                               ),
-                            )
+                          )
                           : Text('1kg'),
                     ],
                   ),
@@ -131,32 +163,12 @@ class _SingleItemState extends State<SingleItem> {
                       ? EdgeInsets.symmetric(horizontal: 15, vertical: 32)
                       : EdgeInsets.only(left: 15, right: 15),
                   child: widget.isBool == false
-                      ? Container(
-                          height: 25,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  color: primaryColor,
-                                  size: 20,
-                                ),
-                                Text(
-                                  '1',
-                                  style: TextStyle(
-                                    color: primaryColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
+                      ? CountWidget(
+                    productId: widget.productId,
+                    productName: widget.productName,
+                    productImage: widget.productImage,
+                    productPrice: widget.productPrice,
+                  )
                       : Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Column(
@@ -172,7 +184,8 @@ class _SingleItemState extends State<SingleItem> {
                               SizedBox(
                                 height: 15,
                               ),
-                              Container(
+                              widget.wishList == false
+                                  ? Container(
                                 height: 25,
                                 width: 70,
                                 decoration: BoxDecoration(
@@ -202,7 +215,7 @@ class _SingleItemState extends State<SingleItem> {
                                     ],
                                   ),
                                 ),
-                              ),
+                              ):Container(),
                             ],
                           ),
                       ),

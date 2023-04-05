@@ -5,6 +5,7 @@ import 'package:food_app/screens/search/search_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/single_products.dart';
+import '../review_cart/review_cart.dart';
 import 'drawer_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -66,9 +67,18 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CircleAvatar(
               backgroundColor: Color(0xffd4d181),
               radius: 15,
-              child: Icon(
-                Icons.shop,
-                size: 17,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ReviewCart(),
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.shop,
+                  size: 17,
+                ),
                 color: Colors.black,
               ),
             ),

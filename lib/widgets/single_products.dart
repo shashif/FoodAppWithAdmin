@@ -66,22 +66,55 @@ class SingleProducts extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          height: 30,
-                          width: 50,
-                          // padding: EdgeInsets.only(left: 5),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Text('50 Gram',
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                    )),
-                              ],
+                        child: InkWell(
+                          onTap: () {
+
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      ListTile(
+                                        title: new Text('50 Gram'),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                      ListTile(
+                                        title: new Text('500 Gram'),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                      ListTile(
+                                        title: new Text('1 Kg'),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 50,
+                            // padding: EdgeInsets.only(left: 5),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: const [
+                                  Text('50 Gram',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                      )),
+                                ],
+                              ),
                             ),
                           ),
                         ),

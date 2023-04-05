@@ -7,8 +7,7 @@ import 'package:provider/provider.dart';
 import '../../models/review_cart_model.dart';
 
 class ReviewCart extends StatelessWidget {
-
-    // late ReviewCartProvider reviewCartProvider;
+  // late ReviewCartProvider reviewCartProvider;
 
   //dialog start
   // showAlertDialog(BuildContext context, ReviewCartModel delete) {
@@ -99,12 +98,14 @@ class ReviewCart extends StatelessWidget {
                     ),
                     SingleItem(
                       isBool: true,
+                      wishList: false,
                       productName: data.cartName,
                       productImage: data.cartImage,
                       productPrice: data.cartPrice,
                       productId: data.cartID,
                       productQuantity: data.cartQuantity,
                       onDelete: () {
+
                         // showAlertDialog(context, data);
 // set up the buttons
                         Widget cancelButton = TextButton(
@@ -116,8 +117,8 @@ class ReviewCart extends StatelessWidget {
                         Widget continueButton = TextButton(
                           child: Text("Yes"),
                           onPressed: () {
-
-                            reviewCartProvider.reviewCartDataDelete(data.cartID);
+                            reviewCartProvider
+                                .reviewCartDataDelete(data.cartID);
                             Navigator.of(context).pop();
                           },
                         );
@@ -140,7 +141,9 @@ class ReviewCart extends StatelessWidget {
                           },
                         );
 
-                        },
+
+
+                      },
                     ),
                   ],
                 );
@@ -148,10 +151,5 @@ class ReviewCart extends StatelessWidget {
               itemCount: reviewCartProvider.getReviewCArtDataList.length,
             ),
     );
-
-
   }
-
-
-
 }

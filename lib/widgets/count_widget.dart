@@ -53,7 +53,7 @@ class _CountWidgetState extends State<CountWidget> {
     Provider.of<ReviewCartProvider>(context);
     return Container(
       height: 30,
-      width: 50,
+      width: 60,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(10)),

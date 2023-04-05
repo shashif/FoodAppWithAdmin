@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/providers/wishlist_provider.dart';
 import 'package:food_app/widgets/color_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/bottomNavigatorBar_widget.dart';
+import '../../widgets/count_widget.dart';
+import '../review_cart/review_cart.dart';
 
 enum SigninCharacter { fill, outline }
 
@@ -30,47 +34,28 @@ class _ProductOverviewState extends State<ProductOverview> {
 
   bool wishLishtBool = false;
 
-  // Widget bottomNavigatorBar({
-  //   Color? iconColor,
-  //   Color? backgroundColor,
-  //   Color? color,
-  //   String? title,
-  //   IconData? iconData,
-  //   VoidCallback? onTap
-  // }) {
-  //   return Expanded(
-  //     child: GestureDetector(
-  //       onTap: onTap,
-  //       child: Container(
-  //         padding: EdgeInsets.all(20),
-  //         color: backgroundColor,
-  //         child: Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             Icon(
-  //               iconData,
-  //               size: 17,
-  //               color: iconColor,
-  //             ),
-  //             SizedBox(
-  //               width: 5,
-  //             ),
-  //             Text(
-  //               title!,
-  //               style: TextStyle(
-  //                 color: color,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  getWishListBool() {
+    FirebaseFirestore.instance
+        .collection('WishList')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('YourWishList')
+        .doc(widget.productId)
+        .get()
+        .then((value) {
+      if (this.mounted) {
+        if (value.exists) {
+          setState(() {
+            wishLishtBool = value.get('wishList');
+          });
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     WishListProvider wishListProvider = Provider.of(context);
+    getWishListBool();
     return Scaffold(
       bottomNavigationBar: Row(
         children: [
@@ -94,6 +79,8 @@ class _ProductOverviewState extends State<ProductOverview> {
                   wishListPrice: widget.productPrice,
                   wishListQuantity: 2,
                 );
+              } else {
+                wishListProvider.deleteWishtList(widget.productId);
               }
             },
           ),
@@ -102,7 +89,11 @@ class _ProductOverviewState extends State<ProductOverview> {
               color: textColor,
               iconColor: Colors.white70,
               title: "Add to cart",
-              iconData: Icons.shop_outlined),
+              iconData: Icons.shop_outlined,
+            onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReviewCart(),),);
+            },
+          ),
         ],
       ),
       appBar: AppBar(
@@ -173,30 +164,36 @@ class _ProductOverviewState extends State<ProductOverview> {
                             ],
                           ),
                           Text('\$ ${widget.productPrice}'),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 15,
-                                  color: primaryColor,
-                                ),
-                                Text(
-                                  'ADD',
-                                  style: TextStyle(
-                                    color: primaryColor,
-                                  ),
-                                ),
-                              ],
-                            ),
+                          CountWidget(
+                            productId: widget.productId,
+                            productName: widget.productName,
+                            productImage: widget.productImage,
+                            productPrice: widget.productPrice,
                           ),
+                          // Container(
+                          //   padding: EdgeInsets.symmetric(
+                          //       horizontal: 30, vertical: 10),
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(color: Colors.grey),
+                          //     borderRadius: BorderRadius.circular(30),
+                          //   ),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     children: [
+                          //       Icon(
+                          //         Icons.add,
+                          //         size: 15,
+                          //         color: primaryColor,
+                          //       ),
+                          //       Text(
+                          //         'ADD',
+                          //         style: TextStyle(
+                          //           color: primaryColor,
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     )

@@ -4,6 +4,7 @@ import 'package:food_app/screens/my_profile/my_profile.dart';
 
 import '../../widgets/drawer_list_tile_widget.dart';
 import '../review_cart/review_cart.dart';
+import '../wishlist/wish_list.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -81,7 +82,10 @@ class DrawerWidget extends StatelessWidget {
             listTile(
                 iconData: Icons.favorite_outlined,
                 title: "Wishlist",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WishListScreen()));
+
+                }),
             listTile(
                 iconData: Icons.copy_outlined,
                 title: "Raise & Complaint",

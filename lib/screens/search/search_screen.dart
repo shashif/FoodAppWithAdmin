@@ -87,6 +87,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 productImage: data.productImage,
                 productPrice: data.productPrice,
                 productId: data.productId,
+                wishList: false,
               );
             }).toList(),
           ),
