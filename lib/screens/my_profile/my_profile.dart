@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/models/user_model.dart';
 import 'package:food_app/widgets/color_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/user_provider.dart';
 import '../home_screen/drawer_widget.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
+class MyProfile extends StatefulWidget {
+  UserModel userData;
 
-  Widget listTile({required IconData icon, required String title}){
+  MyProfile({required this.userData});
+
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
+  Widget listTile({required IconData icon, required String title}) {
     return Column(
       children: [
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         ListTile(
           leading: Icon(icon),
           title: Text(title),
@@ -21,6 +33,8 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of(context);
+    userProvider.getUserData();
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
@@ -34,7 +48,7 @@ class MyProfile extends StatelessWidget {
           ),
         ),
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(userProvider: userProvider),
       body: Stack(
         children: [
           Column(
@@ -50,12 +64,11 @@ class MyProfile extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   ),
-
                 ),
                 child: ListView(
                   children: [
@@ -73,7 +86,7 @@ class MyProfile extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Md shoriful Hasan',
+                                  Text(widget.userData.userName,
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -82,7 +95,7 @@ class MyProfile extends StatelessWidget {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text('shoriful.hasan@gmail.com'),
+                                  Text(widget.userData.userEmail),
                                 ],
                               ),
                               CircleAvatar(
@@ -102,13 +115,19 @@ class MyProfile extends StatelessWidget {
                         ),
                       ],
                     ),
-                    listTile(icon: Icons.shop,title: 'My Order'),
-                    listTile(icon: Icons.location_on_outlined,title: 'My Delivery Address'),
-                    listTile(icon: Icons.person_outline,title: 'Refer a friend'),
-                    listTile(icon: Icons.file_copy_outlined,title: 'Terms & Conditions'),
-                    listTile(icon: Icons.policy_outlined,title: 'Privacy Policy'),
-                    listTile(icon: Icons.add_chart_outlined,title: 'About'),
-                    listTile(icon: Icons.exit_to_app_outlined,title: 'Logout'),
+                    listTile(icon: Icons.shop, title: 'My Order'),
+                    listTile(
+                        icon: Icons.location_on_outlined,
+                        title: 'My Delivery Address'),
+                    listTile(
+                        icon: Icons.person_outline, title: 'Refer a friend'),
+                    listTile(
+                        icon: Icons.file_copy_outlined,
+                        title: 'Terms & Conditions'),
+                    listTile(
+                        icon: Icons.policy_outlined, title: 'Privacy Policy'),
+                    listTile(icon: Icons.add_chart_outlined, title: 'About'),
+                    listTile(icon: Icons.exit_to_app_outlined, title: 'Logout'),
                   ],
                 ),
               ),
@@ -120,8 +139,7 @@ class MyProfile extends StatelessWidget {
               radius: 50,
               backgroundColor: primaryColor,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://www.tastingtable.com/img/gallery/the-common-vegetable-that-contains-more-protein-than-steak/intro-1647190998.webp'),
+                backgroundImage: NetworkImage(widget.userData.userImage??""),
                 radius: 45,
                 backgroundColor: scaffoldBackgroundColor,
               ),

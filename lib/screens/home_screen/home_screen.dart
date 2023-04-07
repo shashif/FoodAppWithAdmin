@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/providers/product_provider.dart';
+import 'package:food_app/providers/user_provider.dart';
 import 'package:food_app/screens/product_overview/product_overview.dart';
 import 'package:food_app/screens/search/search_screen.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     productProvider = Provider.of(context);
+    UserProvider userProvider= Provider.of(context);
+    userProvider.getUserData();
+
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
       appBar: AppBar(
@@ -85,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(userProvider:userProvider),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: ListView(

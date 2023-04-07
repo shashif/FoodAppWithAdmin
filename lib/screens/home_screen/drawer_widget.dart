@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/providers/user_provider.dart';
 import 'package:food_app/screens/home_screen/home_screen.dart';
 import 'package:food_app/screens/my_profile/my_profile.dart';
 
@@ -6,70 +7,74 @@ import '../../widgets/drawer_list_tile_widget.dart';
 import '../review_cart/review_cart.dart';
 import '../wishlist/wish_list.dart';
 
-class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({
-    super.key,
-  });
+class DrawerWidget extends StatefulWidget {
+  DrawerWidget({required this.userProvider});
+
+  UserProvider userProvider;
 
   @override
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  @override
   Widget build(BuildContext context) {
+    var userData= widget.userProvider.currentUserData;
     return Drawer(
       child: Container(
         color: const Color(0xffd1ad17),
         child: ListView(
           children: [
             DrawerHeader(
-                child: Row(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
               children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.white54,
-                  radius: 43,
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.yellow,
+                   CircleAvatar(
+                    backgroundColor: Colors.white54,
+                    radius: 43,
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.yellow,
+                      backgroundImage: NetworkImage(userData.userImage ?? ""),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Welcome Huest'),
-                    const SizedBox(
-                      height: 7,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      height: 30,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text('Login'),
-                      ),
-                    ),
-                  ],
-                ),
+                   SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       Text(userData.userName),
+                       Text(userData.userEmail,overflow: TextOverflow.ellipsis,),
+                       SizedBox(height: 7,),
+
+                    ],
+                  ),
               ],
-            )),
+            ),
+                )),
             listTile(
-                iconData: Icons.home_outlined, title: "Home", onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
-            }),
+                iconData: Icons.home_outlined,
+                title: "Home",
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomeScreen()));
+                }),
             listTile(
                 iconData: Icons.shop_outlined,
                 title: "Review Cart",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReviewCart()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ReviewCart()));
                 }),
             listTile(
                 iconData: Icons.person_outlined,
                 title: "My Profile",
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const MyProfile()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>  MyProfile(userData:userData)));
                 }),
             listTile(
                 iconData: Icons.notifications_outlined,
@@ -83,8 +88,8 @@ class DrawerWidget extends StatelessWidget {
                 iconData: Icons.favorite_outlined,
                 title: "Wishlist",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WishListScreen()));
-
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => WishListScreen()));
                 }),
             listTile(
                 iconData: Icons.copy_outlined,
