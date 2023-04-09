@@ -7,47 +7,7 @@ import 'package:provider/provider.dart';
 import '../../models/review_cart_model.dart';
 
 class ReviewCart extends StatelessWidget {
-  // late ReviewCartProvider reviewCartProvider;
 
-  //dialog start
-  // showAlertDialog(BuildContext context, ReviewCartModel delete) {
-  //
-  //   // set up the buttons
-  //   Widget cancelButton = TextButton(
-  //     child: Text("No"),
-  //     onPressed: () {
-  //       Navigator.of(context).pop();
-  //     },
-  //   );
-  //   Widget continueButton = TextButton(
-  //     child: Text("Yes"),
-  //     onPressed: () {
-  //
-  //       reviewCartProvider.reviewCartDataDelete(delete.cartID);
-  //       Navigator.of(context).pop();
-  //     },
-  //   );
-  //
-  //   // set up the AlertDialog
-  //   AlertDialog alert = AlertDialog(
-  //     title: Text("Cart Product"),
-  //     content: Text("Are you devete on cartProduct?"),
-  //     actions: [
-  //       cancelButton,
-  //       continueButton,
-  //     ],
-  //   );
-  //
-  //   // show the dialog
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return alert;
-  //     },
-  //   );
-  // }
-
-  //dialog end
   @override
   Widget build(BuildContext context) {
     ReviewCartProvider reviewCartProvider = Provider.of(context);

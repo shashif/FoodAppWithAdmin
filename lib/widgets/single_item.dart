@@ -1,5 +1,6 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/widgets/color_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -14,12 +15,13 @@ class SingleItem extends StatefulWidget {
     required this.productImage,
     required this.productPrice,
     required this.productId,
-     this.productQuantity,
-    this.onDelete,  required this.wishList,
+    this.productQuantity,
+    this.onDelete,
+    required this.wishList,
   }) : super(key: key);
 
-  bool isBool=false;
-  bool wishList=false;
+  bool isBool = false;
+  bool wishList = false;
   String productName;
   String productImage;
   String productId;
@@ -38,7 +40,7 @@ class _SingleItemState extends State<SingleItem> {
 
   getCount() {
     setState(() {
-      count = widget.productQuantity?? 0;
+      count = widget.productQuantity ?? 0;
     });
   }
 
@@ -93,36 +95,36 @@ class _SingleItemState extends State<SingleItem> {
                       ),
                       widget.isBool == false
                           ? GestureDetector(
-                        onTap: (){
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    ListTile(
-                                      title: new Text('50 Gram'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: new Text('500 Gram'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
-                                      title: new Text('1 Kg'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              });
-                        },
-                            child: Container(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          ListTile(
+                                            title: new Text('50 Gram'),
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          ListTile(
+                                            title: new Text('500 Gram'),
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          ListTile(
+                                            title: new Text('1 Kg'),
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child: Container(
                                 margin: EdgeInsets.only(
                                   right: 10,
                                 ),
@@ -135,7 +137,8 @@ class _SingleItemState extends State<SingleItem> {
                                 child: Row(
                                   children: [
                                     Expanded(
-                                      child: Text('${widget.productPrice} \$ or 50 gram',
+                                      child: Text(
+                                        '${widget.productPrice} \$ or 50 gram',
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 14,
@@ -151,7 +154,7 @@ class _SingleItemState extends State<SingleItem> {
                                   ],
                                 ),
                               ),
-                          )
+                            )
                           : Text('1kg'),
                     ],
                   ),
@@ -164,61 +167,111 @@ class _SingleItemState extends State<SingleItem> {
                       : EdgeInsets.only(left: 15, right: 15),
                   child: widget.isBool == false
                       ? CountWidget(
-                    productId: widget.productId,
-                    productName: widget.productName,
-                    productImage: widget.productImage,
-                    productPrice: widget.productPrice,
-                  )
+                          productId: widget.productId,
+                          productName: widget.productName,
+                          productImage: widget.productImage,
+                          productPrice: widget.productPrice,
+                        )
                       : Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Column(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Column(
                             children: [
-                               InkWell(
-                                 onTap:widget.onDelete,
-                                 child: Icon(
-                                      Icons.delete,
-                                      size: 30,
-                                      color: Colors.black54,
-                                    ),
-                               ),
+                              InkWell(
+                                onTap: widget.onDelete,
+                                child: Icon(
+                                  Icons.delete,
+                                  size: 30,
+                                  color: Colors.black54,
+                                ),
+                              ),
                               SizedBox(
                                 height: 15,
                               ),
                               widget.wishList == false
                                   ? Container(
-                                height: 25,
-                                width: 70,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.remove,
-                                        color: primaryColor,
-                                        size: 20,
+                                      height: 25,
+                                      width: 70,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(30),
                                       ),
-                                      Text(
-                                        '1',
-                                        style: TextStyle(
-                                          color: primaryColor,
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              child: Icon(
+                                                Icons.remove,
+                                                color: primaryColor,
+                                                size: 20,
+                                              ),
+                                              onTap: () {
+                                                if (count == 1) {
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                          "You reach minimum limit");
+                                                } else {
+                                                  setState(() {
+                                                    count--;
+                                                  });
+                                                  reviewCartProvider
+                                                      .updateReviewCartData(
+                                                          cartID:
+                                                              widget.productId,
+                                                          cartImage: widget
+                                                              .productImage,
+                                                          cartName: widget
+                                                              .productName,
+                                                          cartPrice: widget
+                                                              .productPrice,
+                                                          cartQuantity: count);
+                                                }
+                                              },
+                                            ),
+                                            Text(
+                                              '$count',
+                                              style: TextStyle(
+                                                color: primaryColor,
+                                              ),
+                                            ),
+                                            InkWell(
+                                              child: Icon(
+                                                Icons.add,
+                                                color: primaryColor,
+                                                size: 20,
+                                              ),
+                                              onTap: () {
+                                                if (count < 10) {
+                                                  setState(() {
+                                                    count++;
+                                                  });
+                                                  reviewCartProvider
+                                                      .updateReviewCartData(
+                                                          cartID:
+                                                              widget.productId,
+                                                          cartImage: widget
+                                                              .productImage,
+                                                          cartName: widget
+                                                              .productName,
+                                                          cartPrice: widget
+                                                              .productPrice,
+                                                          cartQuantity: count);
+                                                }else{
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                      "Maximum Limit Exixts");
+                                                }
+                                              },
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      Icon(
-                                        Icons.add,
-                                        color: primaryColor,
-                                        size: 20,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ):Container(),
+                                    )
+                                  : Container(),
                             ],
                           ),
-                      ),
+                        ),
                 )),
               ],
             ),

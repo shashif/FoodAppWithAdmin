@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore:
   provider:
   fancy_shimmer_image:
+  fluttertoast:
 
 
 dev_dependencies:
