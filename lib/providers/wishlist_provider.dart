@@ -24,7 +24,6 @@ class WishListProvider with ChangeNotifier {
         "wishListPrice": wishListPrice,
         "wishListQuantity": wishListQuantity,
         "wishList": true,
-
       },
     );
   }
@@ -42,12 +41,12 @@ class WishListProvider with ChangeNotifier {
         .get();
     value.docs.forEach((element) {
       ProductModel productModel = ProductModel(
-          productImage: element.get('wishListImage'),
-          productName: element.get('wishListName'),
-          productPrice: element.get('wishListPrice'),
-          productId: element.get('wishListId'),
+        productImage: element.get('wishListImage'),
+        productName: element.get('wishListName'),
+        productPrice: element.get('wishListPrice'),
+        productId: element.get('wishListId'),
         productQuantity: element.get('wishListQuantity'),
-
+        productUnit: [],
       );
 
       newList.add(productModel);
@@ -60,15 +59,18 @@ class WishListProvider with ChangeNotifier {
   List<ProductModel> get getWishList {
     return wishListData;
   }
+
 ///////////////get wishList data End///////////
 
 /////////////////DELETE wishlist data Start//////////////////
 
-  deleteWishtList(wishListId){
+  deleteWishtList(wishListId) {
     FirebaseFirestore.instance
         .collection("WishList")
         .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection("YourWishList").doc(wishListId).delete();
+        .collection("YourWishList")
+        .doc(wishListId)
+        .delete();
   }
 /////////////////DELETE wishlist data End////////////////////
 }

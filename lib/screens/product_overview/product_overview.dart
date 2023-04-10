@@ -13,17 +13,19 @@ import '../review_cart/review_cart.dart';
 enum SigninCharacter { fill, outline }
 
 class ProductOverview extends StatefulWidget {
-  const ProductOverview({
+   ProductOverview({
     Key? key,
     required this.productName,
     required this.productImage,
     required this.productPrice,
     required this.productId,
+    required this.productUnit,
   }) : super(key: key);
   final String productName;
   final String productImage;
   final int productPrice;
   final String productId;
+  var productUnit;
 
   @override
   State<ProductOverview> createState() => _ProductOverviewState();
@@ -169,6 +171,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                             productName: widget.productName,
                             productImage: widget.productImage,
                             productPrice: widget.productPrice,
+                            productUnit: widget.productUnit,
                           ),
                           // Container(
                           //   padding: EdgeInsets.symmetric(

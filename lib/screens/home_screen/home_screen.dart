@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     productProvider = Provider.of(context);
-    UserProvider userProvider= Provider.of(context);
+    UserProvider userProvider = Provider.of(context);
     userProvider.getUserData();
 
     return Scaffold(
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: DrawerWidget(userProvider:userProvider),
+      drawer: DrawerWidget(userProvider: userProvider),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: ListView(
@@ -209,6 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         productImage: value.productImage,
                         productPrice: value.productPrice,
                         productId: value.productId,
+                        productUnit: value,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
@@ -216,6 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     productPrice: value.productPrice,
                                     productImage: value.productImage,
                                     productId: value.productId,
+                                    productUnit: value.productUnit,
                                   )));
                         });
                   },
@@ -261,13 +263,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         productImage: value.productImage,
                         productPrice: value.productPrice,
                         productId: value.productId,
+                        productUnit: value,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
-                                  productName: value.productName,
-                                  productPrice: value.productPrice,
-                                  productImage: value.productImage,
-                                  productId: value.productId)));
+                                    productName: value.productName,
+                                    productPrice: value.productPrice,
+                                    productImage: value.productImage,
+                                    productId: value.productId,
+                                    productUnit: value.productUnit,
+                                  )));
                         });
                   },
                 ).toList(),
@@ -312,6 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         productImage: value.productImage,
                         productPrice: value.productPrice,
                         productId: value.productId,
+                        productUnit: value,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductOverview(
@@ -319,6 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     productPrice: value.productPrice,
                                     productImage: value.productImage,
                                     productId: value.productId,
+                                    productUnit: value.productUnit,
                                   )));
                         });
                   },

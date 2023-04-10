@@ -4,6 +4,7 @@ class ReviewCartModel {
   String cartName;
   int cartPrice;
   int cartQuantity;
+  var cartUnit;
   bool isAdd;
 
   ReviewCartModel(
@@ -13,5 +14,6 @@ class ReviewCartModel {
       required this.cartPrice,
       required this.cartQuantity,
       required this.isAdd,
+        required this.cartUnit,
       });
 }

@@ -16,6 +16,7 @@ class SingleItem extends StatefulWidget {
     required this.productPrice,
     required this.productId,
     this.productQuantity,
+    this.productUnit,
     this.onDelete,
     required this.wishList,
   }) : super(key: key);
@@ -28,6 +29,7 @@ class SingleItem extends StatefulWidget {
   int productPrice;
   int? productQuantity;
   VoidCallback? onDelete;
+  var productUnit;
 
   @override
   State<SingleItem> createState() => _SingleItemState();
@@ -85,10 +87,10 @@ class _SingleItemState extends State<SingleItem> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            'Product price',
+                          Text('\$ ${widget.productPrice}',
                             style: TextStyle(
                               color: Colors.grey,
+                                fontWeight: FontWeight.bold
                             ),
                           ),
                         ],
@@ -138,7 +140,7 @@ class _SingleItemState extends State<SingleItem> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        '${widget.productPrice} \$ or 50 gram',
+                                        '50 Gram',
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 14,
@@ -155,7 +157,7 @@ class _SingleItemState extends State<SingleItem> {
                                 ),
                               ),
                             )
-                          : Text('1kg'),
+                          : Text(widget.productUnit),
                     ],
                   ),
                 )),
@@ -171,6 +173,7 @@ class _SingleItemState extends State<SingleItem> {
                           productName: widget.productName,
                           productImage: widget.productImage,
                           productPrice: widget.productPrice,
+                          productUnit: widget.productUnit,
                         )
                       : Padding(
                           padding: const EdgeInsets.only(top: 8),
@@ -257,10 +260,10 @@ class _SingleItemState extends State<SingleItem> {
                                                           cartPrice: widget
                                                               .productPrice,
                                                           cartQuantity: count);
-                                                }else{
+                                                } else {
                                                   Fluttertoast.showToast(
                                                       msg:
-                                                      "Maximum Limit Exixts");
+                                                          "Maximum Limit Exixts");
                                                 }
                                               },
                                             ),

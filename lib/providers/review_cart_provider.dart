@@ -5,14 +5,13 @@ import 'package:flutter/cupertino.dart';
 import '../models/review_cart_model.dart';
 
 class ReviewCartProvider with ChangeNotifier {
-
   void addReviewCartData({
     required String cartID,
     required String cartImage,
     required String cartName,
     required int cartPrice,
     required int cartQuantity,
-
+    var cartUnit,
   }) async {
     await FirebaseFirestore.instance
         .collection("ReviewCart")
@@ -27,6 +26,7 @@ class ReviewCartProvider with ChangeNotifier {
         "cartPrice": cartPrice,
         "cartQuantity": cartQuantity,
         "isAdd": true,
+       "cartUnit":cartUnit,
       },
     );
   }
@@ -51,6 +51,8 @@ class ReviewCartProvider with ChangeNotifier {
         cartPrice: element.get('cartPrice'),
         cartQuantity: element.get('cartQuantity'),
         isAdd: element.get('isAdd'),
+        cartUnit: element.get('cartUnit'),
+
       );
 
       newListData.add(reviewCardModel);
@@ -80,7 +82,6 @@ class ReviewCartProvider with ChangeNotifier {
 
 ///////////////////////////// cart data Delete  End///////////////////////
 
-
 ///////////////////////////// cart data Update  Start///////////////////////
   void updateReviewCartData({
     required String cartID,
@@ -88,7 +89,6 @@ class ReviewCartProvider with ChangeNotifier {
     required String cartName,
     required int cartPrice,
     required int cartQuantity,
-
   }) async {
     await FirebaseFirestore.instance
         .collection("ReviewCart")
@@ -107,10 +107,4 @@ class ReviewCartProvider with ChangeNotifier {
     );
   }
 ///////////////////////////// cart data Update  End/////////////////////////
-
-
-
-
-
-
 }
