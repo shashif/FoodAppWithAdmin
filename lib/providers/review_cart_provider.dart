@@ -26,7 +26,7 @@ class ReviewCartProvider with ChangeNotifier {
         "cartPrice": cartPrice,
         "cartQuantity": cartQuantity,
         "isAdd": true,
-       "cartUnit":cartUnit,
+        "cartUnit": cartUnit,
       },
     );
   }
@@ -52,7 +52,6 @@ class ReviewCartProvider with ChangeNotifier {
         cartQuantity: element.get('cartQuantity'),
         isAdd: element.get('isAdd'),
         cartUnit: element.get('cartUnit'),
-
       );
 
       newListData.add(reviewCardModel);
@@ -81,6 +80,18 @@ class ReviewCartProvider with ChangeNotifier {
   }
 
 ///////////////////////////// cart data Delete  End///////////////////////
+
+///////////////////////////// Total Price  Start///////////////////////
+  getTotalPrice() {
+    double total = 0.0;
+    reviewCartDataList.forEach((element) {
+      total += element.cartPrice * element.cartQuantity;
+
+    });
+    return total;
+  }
+
+///////////////////////////// Total Price  End/////////////////////////
 
 ///////////////////////////// cart data Update  Start///////////////////////
   void updateReviewCartData({

@@ -26,7 +26,7 @@ class ReviewCart extends StatelessWidget {
       bottomNavigationBar: ListTile(
         title: Text('Total amount'),
         subtitle: Text(
-          '170.00',
+          '\$ ${reviewCartProvider.getTotalPrice()}',
           style: TextStyle(
             color: Colors.green[900],
           ),
