@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:food_app/providers/review_cart_provider.dart';
 import 'package:food_app/widgets/color_widget.dart';
@@ -5,9 +7,9 @@ import 'package:food_app/widgets/single_item.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/review_cart_model.dart';
+import '../check_out/delivery_details/delivery_details.dart';
 
 class ReviewCart extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     ReviewCartProvider reviewCartProvider = Provider.of(context);
@@ -34,12 +36,16 @@ class ReviewCart extends StatelessWidget {
         trailing: Container(
           width: 160,
           child: MaterialButton(
-            child: Text('Submit'),
+            child: Text('Check out'),
             color: primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DeliveryDetails(),
+              ));
+            },
           ),
         ),
       ),
@@ -66,7 +72,6 @@ class ReviewCart extends StatelessWidget {
                       productQuantity: data.cartQuantity,
                       productUnit: data.cartUnit,
                       onDelete: () {
-
                         // showAlertDialog(context, data);
 // set up the buttons
                         Widget cancelButton = TextButton(
@@ -101,9 +106,6 @@ class ReviewCart extends StatelessWidget {
                             return alert;
                           },
                         );
-
-
-
                       },
                     ),
                   ],
