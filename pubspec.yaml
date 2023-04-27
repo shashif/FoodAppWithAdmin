@@ -42,6 +42,9 @@ dependencies:
   provider:
   fancy_shimmer_image:
   fluttertoast:
+  location:
+  google_maps_flutter:
+  pay:
 
 
 dev_dependencies:

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:food_app/providers/review_cart_provider.dart';
 import 'package:food_app/widgets/color_widget.dart';
 import 'package:food_app/widgets/single_item.dart';
@@ -42,9 +43,16 @@ class ReviewCart extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => DeliveryDetails(),
-              ));
+              if (reviewCartProvider.getReviewCArtDataList.isEmpty) {
+                 Fluttertoast.showToast(msg: "No cart data found");
+              }
+             else
+               {
+                 Navigator.of(context).push(MaterialPageRoute(
+                   builder: (context) => DeliveryDetails(),));
+               }
+
+
             },
           ),
         ),
